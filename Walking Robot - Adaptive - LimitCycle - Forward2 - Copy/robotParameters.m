@@ -3,10 +3,10 @@
 % Copyright 2017 The MathWorks, Inc.
 
 %% General parameters
-density = 1000;
-foot_density = 2000;
-world_damping = 0.25;
-world_rot_damping = 0.25;
+density = 1000;           % kg/m^3
+foot_density = 2000;      % kg/m^3
+world_damping = 0.25;     % N.s/m
+world_rot_damping = 0.25; % N.s/rad
 if ~exist('actuatorType','var')
     actuatorType = 1;
 end
@@ -33,39 +33,39 @@ end
 % contact_point_radius = .005;
 
 %% Contact/friction parameters
-contact_stiffness = 300;  % 2000   400      70
-contact_damping = 2200;   % 10000  4000    2400  
+contact_stiffness = 300;     % N/m   % 2000   400      70
+contact_damping = 2200;      % N.s/m % 10000  4000    2400  
 mu_k = 0.5;
 mu_s = .6;
 mu_vth = 0.1;
-height_plane = 0.1;
-plane_x = 3;
-plane_y = .3;
-contact_point_radius = .005;
+height_plane = 0.1;          % m
+plane_x = 3;                 % m
+plane_y = .3;                % m
+contact_point_radius = .005; % m
 
-k=900;   %1000  500
-b=2000;
-kf=.6;
-ks=7;  % 10  7
-r=.005;
+k=900;   % N/m   %1000  500
+b=2000;  % N.s/m 
+kf=.6;   % Dynamic Coeff of Friction
+ks=7;    % Static Coeff of Friction  10  7
+r=.005;  % m
 
 %% Foot parameters
-foot_x = 8;
-foot_y = 6;
-foot_z = 1;
-foot_offset = [-4 0 0];
+% foot_x = 8;
+% foot_y = 6;
+% foot_z = 1;
+% foot_offset = [-4 0 0];
 
 %% Leg parameters
-leg_radius = 3.5;
-lower_leg_length = 38;
-upper_leg_length = 38;
+leg_radius = 3.5;       % cm
+lower_leg_length = 38;  % cm
+upper_leg_length = 38;  % cm
 
 %% Torso parameters
-torso_y = 10;
-torso_x = 5;
-torso_z = 8;
-torso_offset_z = -2;
-torso_offset_x = -0.5;
+torso_y = 10;           % cm
+torso_x = 5;            % cm
+torso_z = 8;            % cm
+torso_offset_z = -2;    % cm
+torso_offset_x = -0.5;  % cm
 % init_height = 3 + 38 + 38 + ...
 %               25 - 12.5 ;
 % init_height = 3 + 38 + 38 + .5;
