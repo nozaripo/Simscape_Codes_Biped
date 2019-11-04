@@ -35,12 +35,12 @@ end
 %% Contact/friction parameters
 contact_stiffness = 300;     % N/m   % 2000   400      70
 contact_damping = 2200;      % N.s/m % 10000  4000    2400  
-mu_k = 0.5;
-mu_s = .6;
-mu_vth = 0.1;
-height_plane = 0.1;          % m
-plane_x = 3;                 % m
-plane_y = .3;                % m
+mu_k = 0.5;                  % Dynamic Coeff of Friction
+mu_s = .6;                   % Static Coeff of Friction
+mu_vth = 0.1;                % Speed Threshold for Friction
+height_plane = 0.1;          % Height of the treadmill (m)
+plane_x = 3;                 % Length of the treadmill (m)
+plane_y = .3;                % Width of the treadmill (m)
 contact_point_radius = .005; % m
 
 k=900;   % N/m   %1000  500
