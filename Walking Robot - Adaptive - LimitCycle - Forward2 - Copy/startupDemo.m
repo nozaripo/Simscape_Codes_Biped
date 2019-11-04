@@ -19,13 +19,12 @@ addpath([YBT_HomeDir filesep 'Libraries']);
 addpath([YBT_HomeDir filesep 'Images']);
 % addpath([YBT_HomeDir filesep 'Optim']);
 % addpath([YBT_HomeDir filesep 'Resources']);
-addpath([YBT_HomeDir filesep 'URDF']);
+% addpath([YBT_HomeDir filesep 'URDF']);
 
 %% Add folders to the path
 % addpath('Optim','SavedResults',genpath('Robot'),genpath('Libraries'))
 
 %% Open the main model and load parameters
 % youBot_PARAM
-
-robotParameters
+% robotParameters
 walkingRobot_Forward2
