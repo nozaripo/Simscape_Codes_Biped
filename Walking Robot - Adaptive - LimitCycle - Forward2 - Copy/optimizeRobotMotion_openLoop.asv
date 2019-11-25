@@ -17,7 +17,7 @@ parallelFlag = true;
 actuatorType = 1;
 
 
-%% Bounds and number of variables
+%%
 
 Amp_no = 3;     % 3 amplitudes each for each of the DOFs (symmetric gait)
 
@@ -53,8 +53,8 @@ p0 = [.4 .45 1 1 1];
 p01= [.7  .7 .8 .8 .7];
 opts.InitialPopulationMatrix = [lowerBnd+(upperBnd-lowerBnd).*rand(opts.PopulationSize-r1-r,numPoints); repmat(p0,[r1 1]); repmat(p01,[r 1])];% Add copies of initial gait
 
-% output matrix in which the optimal individuals of each generations is
-% stored and shown during the optimization
+
+        
 output = zeros(opts.MaxGenerations,numPoints);
 
 
@@ -67,15 +67,17 @@ V_treadmill = 0.3 + (1.7/5)*(k-1);  % V_treadmill ~ 1 m/s
 %% Run commands to set up parallel/accelerated simulation
 doSpeedupTasks;
 
-%% Optimization cost and constraint functions
+%% Run optimization
 costFcn = @(p)CostFCN(p,mdlName,V_treadmill);
+% nonlcon = @(p)GAconstraint(p,mdlName,scalingFactor,gaitPeriod,actuatorType); % Constraint for height
+
 nonlcon = @(p)simWalker_constraint(p,mdlName,V_treadmill); % Constraint for height
 
 tic
 
 
 
-%% solve the problem by ga
+%% solve by ga
 disp(['Running optimization! Population Size: ' num2str(opts.PopulationSize) ...
       ', Fitness Limit: ' num2str(opts.FitnessLimit) ...
       ', Generations No: ' num2str(opts.MaxGenerations)])
@@ -95,7 +97,7 @@ disp(['Final penalty function value: ' num2str(penalty)])
 
 
 %% Return the optimal decision variables
-    pFinal(1,1) = 35+7*pFinal(1,1);
+    pFinal(1,1) = 38+7*pFinal(1,1);
     ts0 = ceil(pFinal(1,1));    
     tau = pFinal(1,2);
     Am = pFinal(1,3:end);
@@ -128,9 +130,7 @@ theta0 = q;
 [~, init_height] = torso_pitch(theta0,Traj);
 
 
-%% Evaluate the individuals cost penalties and constraint violations in each generation
-% It does the same thing as the two last parts above but for all the 
-% generations and retunrs the cost penalties and constraints violations
+%% Evaluate the individuals cost penalties and constraint violations 
 for j = 1:size(GenBest,1)
     GenBest_vel(:,:,k) = GenBest'
     j

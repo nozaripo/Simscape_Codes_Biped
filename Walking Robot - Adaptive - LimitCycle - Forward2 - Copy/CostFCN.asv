@@ -12,8 +12,11 @@ tau = params(1,2);
 Am = params(1,3:end);
 Am = repmat(Am,1,6/length(Am));
 
-%% DMP and config based on initial config variable "ts0"
+%% DMP and config based on initial config variable 
 [DMP, W, ~, Ym, tau_nom, dt, time, Tra, F, init_pos, init_vel] = learn_rcp_batch(ts0);
+
+
+
 
 Traj = Am.*init_pos'*pi/180;
 Ym = Ym.*Am;
@@ -64,14 +67,8 @@ transport_penalty = 1e-3 + max(0,transport);
 % Cost of Transport normalized by distance travelled
 CoT = WorkEnd/transport_penalty;
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Penalty (the main output of this file that is used for ga optimization)
 penalty = CoT + 10*norm(torso_theta(1)-torso_theta(end));
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 
 
 
@@ -90,6 +87,7 @@ Constraint_viol_indiv = -[x(1)-x(end);
     r_ank(1)-l_ank(end);
     r_kn(1)-l_kn(end);
     r_hip(1)-l_hip(end)];
+
 
 
 clear simout
